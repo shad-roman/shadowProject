@@ -1,8 +1,10 @@
+package edu.java.entity;
+
 public class Shop {
     String name;
     String city;
     String street;
-    int houseNumber;
+    Integer houseNumber;
 
     public String getName() {
         return name;
@@ -28,11 +30,11 @@ public class Shop {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 }

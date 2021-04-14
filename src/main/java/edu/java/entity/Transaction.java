@@ -1,23 +1,26 @@
+package edu.java.entity;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Transaction {
-    Date date;
-    int cost;
+    LocalDate date;
+    Integer cost;
     String transaction;
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public int getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
