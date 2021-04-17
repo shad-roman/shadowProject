@@ -1,12 +1,21 @@
 package edu.java.entity;
 
+
+import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvDate;
+
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class Transaction {
-    LocalDate date;
-    Integer cost;
+    @CsvBindByPosition(position = 0)
     String transaction;
+    @CsvBindByPosition(position = 1)
+    Integer cost;
+    @CsvBindByPosition(position = 2)
+    @CsvDate(value = "yyyy-MM-dd")
+    LocalDate date;
+
 
     public LocalDate getDate() {
         return date;
@@ -35,9 +44,9 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "date=" + date +
+                "transaction='" + transaction + '\'' +
                 ", cost=" + cost +
-                ", transaction='" + transaction + '\'' +
+                ", date=" + date +
                 '}';
     }
 }
