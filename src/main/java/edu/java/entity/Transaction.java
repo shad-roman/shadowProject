@@ -1,12 +1,14 @@
 package edu.java.entity;
 
-import java.time.LocalDate;
-import java.util.Date;
 
-public class Transaction {
-    LocalDate date;
-    Integer cost;
+import java.time.LocalDate;
+
+
+public class Transaction  {
     String transaction;
+    Integer cost;
+    LocalDate date;
+
 
     public LocalDate getDate() {
         return date;
@@ -35,9 +37,9 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "date=" + date +
+                "transaction='" + transaction + '\'' +
                 ", cost=" + cost +
-                ", transaction='" + transaction + '\'' +
+                ", date=" + date +
                 '}';
     }
 }
