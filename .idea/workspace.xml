@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7608f8-6cb3-4c42-a876-88cf34438fd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/java/entity/Shop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/java/entity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shadowProject/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shadowProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shadowProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transaction.java" beforeDir="false" />
-    </list>
-    <list id="6d4b9807-3eb4-4f53-83d5-527e534e7110" name="Changes by dzmitryramaniuk" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/java/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/transation.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/java/AppTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="be7608f8-6cb3-4c42-a876-88cf34438fd2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +22,8 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -333,6 +318,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
