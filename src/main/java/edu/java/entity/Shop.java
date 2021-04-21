@@ -1,9 +1,15 @@
 package edu.java.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 public class Shop {
+    @CsvBindByPosition(position = 3)
     String name;
+    @CsvBindByPosition(position = 4)
     String city;
+    @CsvBindByPosition(position = 5)
     String street;
+    @CsvBindByPosition(position = 6)
     Integer houseNumber;
 
     public String getName() {
@@ -36,5 +42,15 @@ public class Shop {
 
     public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber=" + houseNumber +
+                '}';
     }
 }

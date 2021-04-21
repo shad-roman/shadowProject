@@ -1,6 +1,7 @@
 package edu.java;
 
 import com.opencsv.bean.CsvToBeanBuilder;
+import edu.java.entity.Shop;
 import edu.java.entity.Transaction;
 
 import java.io.FileReader;
@@ -15,11 +16,12 @@ public class App {
         List<Transaction> transactions = new CsvToBeanBuilder(new FileReader(csvFile))
                 .withType(Transaction.class).build().parse();
 
-
+        List<Shop> shops = new CsvToBeanBuilder(new FileReader(csvFile))
+                .withType(Shop.class).build().parse();
         transactions.forEach(System.out::println);
+        shops.forEach(System.out::println);
 
-        System.out.println(transactions.size());
-        System.out.println(transactions.get(1));
+
 
     }
 }
