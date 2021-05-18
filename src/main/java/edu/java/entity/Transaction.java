@@ -3,6 +3,7 @@ package edu.java.entity;
 
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
+import com.opencsv.bean.CsvRecurse;
 
 import java.time.LocalDate;
 
@@ -15,7 +16,16 @@ public class Transaction {
     @CsvBindByPosition(position = 2)
     @CsvDate(value = "yyyy-MM-dd")
     LocalDate date;
+    @CsvRecurse
+    Shop shop;
 
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -47,6 +57,8 @@ public class Transaction {
                 "transaction='" + transaction + '\'' +
                 ", cost=" + cost +
                 ", date=" + date +
+                ", shop=" + shop +
                 '}';
     }
 }
+
