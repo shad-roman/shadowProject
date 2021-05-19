@@ -25,69 +25,89 @@ public class App {
 
   //      transactions.forEach(System.out::println);
         Map <LocalDate, List<Transaction>> dateMap = new HashMap<LocalDate, List<Transaction>>();
-        for (int i =0; i < transactions.size(); i++){
-            Transaction element = transactions.get(i);
-            LocalDate date = element.getDate();
-            if (dateMap.containsKey(date)){
-                List<Transaction> trans = dateMap.get(date);
-                trans.add(element);
-                dateMap.replace(date,trans);
-            } else {
-                List<Transaction> newTrans = new ArrayList<>();
-                newTrans.add(element);
-                dateMap.put(element.getDate(), newTrans);
-            }
-
-        }
+        buildDateMap(transactions, dateMap);
         dateMap.forEach((key, value) -> System.out.println(key + " : " + value));
-        Map <String, Integer> shopMap = new HashMap<String,Integer>();
-        for (int i=0; i<shopMap.size(); i++){
-            Transaction element = transactions.get(i);
-            Shop shop = element.getShop();
-            String shopName = shop.getName();
-            Integer cost = shopMap.get(shopName);
-            if (shopMap.containsKey(shopName)){
-                Integer sum = cost + element.getCost();
-                shopMap.replace(shopName,sum);
-            } else {
-                shopMap.put(shopName, cost);
-            }
 
-        }
+        Map <String, Integer> shopMap = new HashMap<String,Integer>();
+        buildShopMap(transactions, shopMap);
+
+
         Integer operation;
         do{
-            System.out.println("choose option with transactions: ");
-            System.out.println("1 - spent in a day");
-            System.out.println("2 - spent in a shop");
+            printCommandDescr();
             operation = Integer.parseInt(scanner.nextLine());
 
             if (operation == 1) {
-                System.out.println("enter date");
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate date = LocalDate.parse(scanner.nextLine(), formatter);
-                if (dateMap.containsKey(date)) {
-                    List<Transaction> trans = dateMap.get(date);
-                    Integer sum = 0;
-                    for (int i = 0; i < trans.size(); i++) {
-                        Transaction transaction = trans.get(i);
-                        Integer cost = transaction.getCost();
-                        sum = cost + sum;
-                    }
-                    System.out.println("on " + date + " was spent " + sum + "$");
-                } else {
-                    System.out.println("no transactions on this date");
-                }
+                printDateStats(scanner, dateMap);
             }
+
             if (operation == 2){
-                System.out.println("Enter shop name");
-                String strShop = scanner.nextLine();
-                if (shopMap.containsKey(strShop)){
-                    System.out.println("in " + strShop + "was spent " + shopMap.get(strShop) + "$");
-                } else {
-                    System.out.println("no such shop");
-                }
+                printShopStats(scanner, shopMap);
             }
 //
         } while (operation!=0);
+    }
+
+    private static void printShopStats(Scanner scanner, Map<String, Integer> shopMap) {
+        System.out.println("Enter shop name");
+        String strShop = scanner.nextLine();
+
+        if (shopMap.containsKey(strShop)){
+            System.out.printf("in %s was spent %d$%n", strShop, shopMap.get(strShop));
+        } else {
+            System.out.println("no such shop");
+        }
+    }
+
+    private static void printDateStats(Scanner scanner, Map<LocalDate, List<Transaction>> dateMap) {
+        System.out.println("enter date");
+        LocalDate date = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        if (dateMap.containsKey(date)) {
+            List<Transaction> trans = dateMap.get(date);
+            Integer sum = 0;
+            for(Transaction transaction : trans) {
+                sum += transaction.getCost();
+            }
+            System.out.printf("on %s was spent %d$%n", date, sum);
+        } else {
+            System.out.println("no transactions on this date");
+        }
+    }
+
+    private static void printCommandDescr() {
+        System.out.println("choose option with transactions: ");
+        System.out.println("1 - spent in a day");
+        System.out.println("2 - spent in a shop");
+        System.out.println("0 - exit");
+    }
+
+    private static void buildDateMap(List<Transaction> transactions, Map<LocalDate, List<Transaction>> dateMap) {
+        for (Transaction transaction : transactions){
+
+            LocalDate date = transaction.getDate();
+
+            if (dateMap.containsKey(date)){
+                dateMap.get(date).add(transaction);
+            } else {
+                List<Transaction> newTrans = new ArrayList<>();
+                newTrans.add(transaction);
+                dateMap.put(transaction.getDate(), newTrans);
+            }
+        }
+    }
+
+    private static void buildShopMap(List<Transaction> transactions, Map<String, Integer> shopMap) {
+        for (Transaction transaction : transactions){
+            Shop shop = transaction.getShop();
+            String shopName = shop.getName();
+
+            if (shopMap.containsKey(shopName)){
+                Integer sum = shopMap.get(shopName) + transaction.getCost();
+                shopMap.put(shopName,sum);
+            } else {
+                shopMap.put(shopName, transaction.getCost());
+            }
+        }
     }
 }
