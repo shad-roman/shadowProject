@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7608f8-6cb3-4c42-a876-88cf34438fd2" name="Default Changelist" comment="" />
+    <list default="true" id="be7608f8-6cb3-4c42-a876-88cf34438fd2" name="Default Changelist" comment="add Map with date and transactions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shadowProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shadowProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/java/App.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +27,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="SOFT" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -251,6 +254,35 @@
       <workItem from="1618424719236" duration="1552000" />
       <workItem from="1618426736249" duration="1054000" />
     </task>
+    <task id="LOCAL-00001" summary="fix merge conflicts">
+      <created>1618861468089</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618861468089</updated>
+    </task>
+    <task id="LOCAL-00002" summary="get shop data from csv">
+      <created>1619030473278</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619030473278</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add Map with date and transactions">
+      <created>1621370300326</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621370300326</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add Map with date and transactions">
+      <created>1621451011536</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1621451011536</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -321,7 +353,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add" />
+    <MESSAGE value="fix merge conflicts" />
+    <MESSAGE value="get shop data from csv" />
+    <MESSAGE value="add Map with date and transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Map with date and transactions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
