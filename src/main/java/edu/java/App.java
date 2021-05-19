@@ -19,7 +19,7 @@ public class App {
         System.out.println("enter path to csv file");
         String csvFile = scanner.nextLine();
    //     String csvFile = "C:\\WORK_FOLDER\\java\\shadowProject\\src\\resources\\transaction.csv";
-        scanner.close();
+
         List<Transaction> transactions = new CsvToBeanBuilder(new FileReader(csvFile))
                 .withType(Transaction.class).build().parse();
 
@@ -56,16 +56,15 @@ public class App {
         }
         Integer operation;
         do{
-            Scanner in = new Scanner(System.in);
             System.out.println("choose option with transactions: ");
             System.out.println("1 - spent in a day");
             System.out.println("2 - spent in a shop");
-            operation = in.nextInt();
+            operation = Integer.parseInt(scanner.nextLine());
+
             if (operation == 1) {
-                Scanner sc = new Scanner(System.in);
                 System.out.println("enter date");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate date = LocalDate.parse(sc.nextLine(), formatter);
+                LocalDate date = LocalDate.parse(scanner.nextLine(), formatter);
                 if (dateMap.containsKey(date)) {
                     List<Transaction> trans = dateMap.get(date);
                     Integer sum = 0;
@@ -78,20 +77,17 @@ public class App {
                 } else {
                     System.out.println("no transactions on this date");
                 }
-                sc.close();
             }
             if (operation == 2){
-                Scanner scanner1 = new Scanner(System.in);
                 System.out.println("Enter shop name");
-                String strShop = scanner1.nextLine();
+                String strShop = scanner.nextLine();
                 if (shopMap.containsKey(strShop)){
                     System.out.println("in " + strShop + "was spent " + shopMap.get(strShop) + "$");
                 } else {
                     System.out.println("no such shop");
                 }
-                scanner1.close();
             }
-            in.close();
+//
         } while (operation!=0);
     }
 }
