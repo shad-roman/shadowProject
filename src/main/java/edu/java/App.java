@@ -17,8 +17,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         System.out.println("enter path to csv file");
         String csvFile = scanner.nextLine();
-   //     String csvFile = "
-        //     ";
+   //     String csvFile = "C:\\WORK_FOLDER\\java\\shadowProject\\src\\resources\\transaction.csv";
 
         List<Transaction> transactions = new CsvToBeanBuilder(new FileReader(csvFile))
                 .withType(Transaction.class).build().parse();
@@ -29,6 +28,9 @@ public class App {
 
         Map <String, Integer> shopMap = new HashMap<String,Integer>();
         buildShopMap(transactions, shopMap);
+
+        Map <String,Map <String, Integer>> cityShopMap= new HashMap<String, Map<String,Integer>>();
+        buildCityShopMap (transactions, cityShopMap);
 
         Map <String, Integer> saleMap = new HashMap<String,Integer>();
         buildSaleMap (transactions, saleMap);
@@ -45,7 +47,7 @@ public class App {
             }
 
             if (operation == 2){
-                printShopStats(scanner, shopMap);
+                printShopStats(scanner, shopMap, cityShopMap);
             }
             if (operation == 3){
                 printSaleStats (scanner, saleMap);
@@ -53,42 +55,72 @@ public class App {
         } while (operation!=0);
     }
 
-    private static void printSaleStats (Scanner scanner, Map<String, Integer> saleMap){
-        System.out.println("1 - print all data");
-        System.out.println("2 - print data for special product");
-        Integer productOperation = Integer.parseInt(scanner.nextLine());
-        if (productOperation == 1 ){
-            printMapData(saleMap);
-        }
-        if (productOperation == 2){
-            System.out.println("enter product name");
-            String strProduct = scanner.nextLine();
-            if (saleMap.containsKey(strProduct)){
-                System.out.printf ("cost of sold %s - is %d%n", strProduct, saleMap.get(strProduct));
-            } else {
-                System.out.println("no such product");
+    private static void printSaleStats (Scanner scanner, Map<String, Integer> saleMap) {
+        Integer productOperation;
+        do {
+            System.out.println("1 - print all data");
+            System.out.println("2 - print data for special product");
+            System.out.println("0 - back to main menu");
+            productOperation = Integer.parseInt(scanner.nextLine());
+            if (productOperation == 1) {
+                printMapData(saleMap);
             }
-        }
+            if (productOperation == 2) {
+                System.out.println("enter product name");
+                String strProduct = scanner.nextLine();
+                if (saleMap.containsKey(strProduct)) {
+                    System.out.printf("cost of sold %s - is %d%n", strProduct, saleMap.get(strProduct));
+                } else {
+                    System.out.println("no such product");
+                }
+            }
 
+        } while (productOperation !=0);
     }
 
-    private static void printShopStats(Scanner scanner, Map<String, Integer> shopMap) {
-        System.out.println("1 - print all data");
-        System.out.println("2 - print data for special shop");
-        Integer shopOperation = Integer.parseInt(scanner.nextLine());
-        if (shopOperation ==1 ){
-            printMapData(shopMap);
-        }
-        if (shopOperation ==2) {
-            System.out.println("Enter shop name");
-            String strShop = scanner.nextLine();
-
-            if (shopMap.containsKey(strShop)) {
-                System.out.printf("in %s was spent %d$%n", strShop, shopMap.get(strShop));
-            } else {
-                System.out.println("no such shop");
+    private static void printShopStats(Scanner scanner, Map<String, Integer> shopMap, Map <String, Map<String, Integer>> cityShopMap) {
+        Integer shopOperation;
+        do {
+            System.out.println("1 - print all data");
+            System.out.println("2 - print data for special shop");
+            System.out.println("0 - back to main menu");
+            shopOperation = Integer.parseInt(scanner.nextLine());
+            if (shopOperation == 1) {
+                printMapData(shopMap);
             }
-        }
+            if (shopOperation == 2) {
+                Integer cityShopOperation;
+                do {
+                    System.out.println("1 - print data for shop in all country");
+                    System.out.println("2 - print data for shop in special city");
+                    System.out.println("0 - exit");
+                    cityShopOperation = Integer.parseInt(scanner.nextLine());
+                    if (cityShopOperation == 1) {
+                        System.out.println("Enter shop name");
+                        String strShop = scanner.nextLine();
+
+                        if (shopMap.containsKey(strShop)) {
+                            System.out.printf("in %s was spent %d$%n", strShop, shopMap.get(strShop));
+                        } else {
+                            System.out.println("no such shop");
+                        }
+                    }
+                    if (cityShopOperation == 2) {
+                        System.out.println("enter city");
+                        String strCity = scanner.nextLine();
+
+                        System.out.println("Enter shop name");
+                        String strShop = scanner.nextLine();
+
+                        if (cityShopMap.get(strCity).containsKey(strShop)) {
+                            System.out.printf("in %s was spent %d$%n", strShop, cityShopMap.get(strCity).get(strShop));
+                        } else {
+                            System.out.println("no such shop");
+                        }
+                    }
+                }while (cityShopOperation != 0);
+            }
+        }while (shopOperation != 0);
     }
 
     private static void printMapData (Map map){
@@ -96,28 +128,32 @@ public class App {
     }
 
     private static void printDateStats(Scanner scanner, Map<LocalDate, List<Transaction>> dateMap) {
-        System.out.println("1 - print all data");
-        System.out.println("2 - print data for special date");
-        Integer dateOperation = Integer.parseInt(scanner.nextLine());
-        if (dateOperation ==1 ){
-            printMapData(dateMap);
-        }
-        if (dateOperation == 2) {
-
-            System.out.println("enter date");
-            LocalDate date = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-            if (dateMap.containsKey(date)) {
-                List<Transaction> trans = dateMap.get(date);
-                Integer sum = 0;
-                for (Transaction transaction : trans) {
-                    sum += transaction.getCost();
-                }
-                System.out.printf("on %s was spent %d$%n", date, sum);
-            } else {
-                System.out.println("no transactions on this date");
+        Integer dateOperation;
+        do {
+            System.out.println("1 - print all data");
+            System.out.println("2 - print data for special date");
+            System.out.println("0 - back to main menu");
+            dateOperation = Integer.parseInt(scanner.nextLine());
+            if (dateOperation == 1) {
+                printMapData(dateMap);
             }
-        }
+            if (dateOperation == 2) {
+
+                System.out.println("enter date");
+                LocalDate date = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+                if (dateMap.containsKey(date)) {
+                    List<Transaction> trans = dateMap.get(date);
+                    Integer sum = 0;
+                    for (Transaction transaction : trans) {
+                        sum += transaction.getCost();
+                    }
+                    System.out.printf("on %s was spent %d$%n", date, sum);
+                } else {
+                    System.out.println("no transactions on this date");
+                }
+            }
+        }while (dateOperation !=0);
     }
 
 
@@ -146,8 +182,7 @@ public class App {
 
     private static void buildShopMap(List<Transaction> transactions, Map<String, Integer> shopMap) {
         for (Transaction transaction : transactions){
-            Shop shop = transaction.getShop();
-            String shopName = shop.getName();
+            String shopName = transaction.getShop().getName();
 
             if (shopMap.containsKey(shopName)){
                 Integer sum = shopMap.get(shopName) + transaction.getCost();
@@ -169,5 +204,25 @@ public class App {
             }
         }
     }
+    private static  void buildCityShopMap (List<Transaction> transactions,  Map<String, Map<String, Integer>> cityShopMap){
+        for (Transaction transaction : transactions){
+            String city = transaction.getShop().getCity();
+            String shopName = transaction.getShop().getName();
 
+            if (cityShopMap.containsKey(city)) {
+                Map<String, Integer> shopMap = cityShopMap.get(city);
+                    if (shopMap.containsKey(shopName)) {
+                        Integer sum = shopMap.get(shopName) + transaction.getCost();
+                        shopMap.put(shopName, sum);
+                    } else {
+                        shopMap.put(shopName, transaction.getCost());
+                    }
+                cityShopMap.put(city, shopMap);
+            } else {
+                Map<String, Integer> shopMap = new HashMap<String,Integer>();
+                shopMap.put(shopName, transaction.getCost());
+                cityShopMap.put (city, shopMap);
+            }
+        }
+    }
 }
